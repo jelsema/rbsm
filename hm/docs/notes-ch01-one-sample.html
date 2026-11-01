@@ -397,8 +397,19 @@ window.Quarto = {
 </header>
 
 
-<p>$$ % mathbf: % Produces bold, upright (roman) characters. % Only works reliably on Latin letters (A-Z, a-z) and a few uppercase Greek letters % % boldsymbol % Preserves the original italic or slant shape of the math symbol while making it bold. % Works on Latin letters, Greek letters (both upper and lower case), % and most mathematical symbols (like , , ).</p>
-<p>$$</p>
+<!-----
+
+% mathbf: 
+%  Produces bold, upright (roman) characters.
+%  Only works reliably on Latin letters (A-Z, a-z) and a few uppercase Greek letters
+% 
+% boldsymbol
+%  Preserves the original italic or slant shape of the math symbol while making it bold.
+%  Works on Latin letters, Greek letters (both upper and lower case), 
+%    and most mathematical symbols (like \alpha, \nabla, \times).
+
+
+----->
 <p>Will need to redo the headings on this part.</p>
 <section id="location-functional" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="location-functional"><span class="header-section-number">2.1</span> Location Functional</h2>
@@ -425,6 +436,14 @@ window.Quarto = {
 &amp;= \dfrac{2y-2b - x + b}{a} \\
 &amp;= \dfrac{2y  -b - x + b}{a}
 \end{align*}
+\]</span></p>
+<p>Getting to this part might be unclear:</p>
+<p><span class="math display">\[
+\dfrac{1}{2} = \int H\left( 2\dfrac{T_{3}(F_{w})-b}{a} - z \right)h(z)dz
+\]</span></p>
+<p>Note that we’re setting the LHS equal to <span class="math inline">\(1/2\)</span>, which means we’re plugging in the median for <span class="math inline">\(y\)</span>. That’s <span class="math inline">\(T_{3}(H)\)</span>. Then note that since this is <span class="math inline">\(1/2\)</span> and so is the original defining equation of <span class="math inline">\(T_{3}\)</span>, they must be equal. That is:</p>
+<p><span class="math display">\[
+\dfrac{T_{3}(F_{w})-b}{a} = T_{3}(H)
 \]</span></p>
 </section>
 </section>

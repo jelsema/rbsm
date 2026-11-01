@@ -92,6 +92,22 @@ $$
 \end{align*}
 $$
 
+Getting to this part might be unclear:
+
+$$
+\dfrac{1}{2} = \int H\left( 2\dfrac{T_{3}(F_{w})-b}{a} - z \right)h(z)dz
+$$
+
+Note that we're setting the LHS equal to $1/2$, which means we're plugging in the median for $y$. That's $T_{3}(H)$. Then note that since this is $1/2$ and so is the original defining equation of $T_{3}$, they must be equal. That is:
+
+$$
+\dfrac{T_{3}(F_{w})-b}{a} = T_{3}(H)
+$$
+
+
+
+
+
 
 ## Geometry and the Location Model
 
