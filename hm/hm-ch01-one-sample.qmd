@@ -1,0 +1,200 @@
+---
+format: html
+---
+
+{{< include macros.qmd >}}
+
+# One-Sample Preliminaries
+
+## Introduction 
+
+Traditional statistical procedures are widely used because they offer the user a unified methodology with which to attack a multitude of problems, from simple location problems to highly complex experimental designs. These procedures are based on least squares fitting. Once the problem has been cast into a model then least squares offers the user: 
+
+1. A way of fitting the model by minimizing the Euclidean normed distance between the responses and the conjectured model; 
+2. Diagnostic techniques that check the adequacy of the fit of the model, explore the quality of fit, and detect outlying and/or influential cases; 
+3. Inferential procedures, including confidence procedures, tests of hypotheses and multiple comparison procedures; 
+4. Computational feasibility.
+
+Procedures based on least squares, though, are easily impaired by outlying observations. Indeed one outlying observation is enough to spoil the least squares fit, its associated diagnostics and inference procedures. Even though traditional inference procedures are exact when the errors in the model follow a normal distribution, they can be quite inefficient when the distribution of the errors has longer tails than the normal distribution. 
+
+For simple location problems, nonparametric methods were proposed by @Wilcoxon1945. These methods consist of test statistics based on the ranks of the data and associated estimates and confidence intervals for location parameters. The test statistics are distribution free in the sense that their null distributions do not depend on the distribution of the errors. It was soon realized that these procedures are almost as efficient as the traditional methods when the errors follow a normal distribution and, furthermore, are often much more efficient relative to the traditional methods when the error distributions deviate from normality; see @HodgesLehmann1956. These procedures possess both robustness of validity and power. In recent years these nonparametric methods have been extended to linear and nonlinear models. In addition, from the perspective of modern robustness theory, contrary to least squares estimates, these rank-based procedures have bounded influence functions and positive breakdown points. 
+
+Often these nonparametric procedures are thought of as disjoint methods that differ from one problem to another. In this text, we intend to show that this is not the case. Instead, these procedures present a unified methodology analogous to the traditional methods. The four items cited above for the traditional analysis hold for these procedures too. Indeed the only operational difference is that the Euclidean norm is replaced by another norm. 
+
+There are computational procedures available for the rank-based procedures discussed in this book. We offer the reader a collection of computational functions written in the software language R at the site http://www.stat.wmich.edu/mckean/Rfuncs/ . We refer to these computational algorithms as rank-based R algorithms or RBR. We discuss these functions throughout the text and use them in many of the examples, simulation studies, and exercises. The programming language R (see Ihaka, R. and Gentleman, R., 1996) is freeware and can run on all (PC, Mac, Linux) platforms. To download the R software and accompanying information, visit the site http://www.r-project.org/. The language R has intrinsic functions for computation of some of the procedures discussed in this and the next chapter. 
+
+
+
+## Location Model 
+
+In this chapter we will consider the one sample location problem. This will allow us to explore some useful concepts such as distribution freeness and robustness in a simple setting. We will extend many of these concepts to more complicated situations in later chapters. We need to first define a location parameter. For a random variable $X$ we often subscript its distribution function by $X$ to avoid confusion. 
+
+<!----- Definition 1.2.1 -----> 
+::: {#def-location-functional .definition}
+# Location Functional 
+
+Let $T(H)$ be a function defined on the set of distribution functions. We say $T(H)$ is a location functional if 
+
+1. If $G$ is stochastically larger than $F$ (ie. $G(x) \leq F (x)$) for all $x$, then $T(G) \geq T(F)$; 
+2. $T(H_{aX+b}) = aT(H_{X}) + b$, $a > 0$; 
+3. $T(H_{-X}) = −T(H_{X})$. 
+
+Then, we will call $\theta = T(H)$ a location parameter of $H$. 
+:::
+
+
+
+Note that if $X$ has location parameter $\theta$ it follows from the second item in the above definition that the random variable $e = X−\theta$ has location parameter 0. Suppose $X_1, \ldots, X_n$ is a random sample having the common distribution function $H(x)$ and $\theta = T(H)$ is a location parameter of interest. We express this by saying that $X_i$ follows the statistical location model, 
+
+$$
+X_{i} = \theta + e_{i} \:, \:\: i=1,\ldots, n,
+$$ {#eq-location-model1}
+
+where $e_1, \ldots, e_n$ are independent and identically distributed random variable with distribution function $F(x)$ and density function $f(x)$ and location $T(F) = 0$. It follows that $H(x) = F (x − \theta)$ and that $T(H) = \theta$. We next discuss three examples of location parameters that we will use throughout this chapter. Other location parameters are discussed in Section 1.8. See @BickelLehmannl1975 for additional discussion of location functionals.
+
+
+
+::: {#exm-median-location-functional .example}
+# Median Location Functional  
+
+
+First define the inverse of the cdf $H(x)$ by $H^{-1}(u) = \inf\{x : H(x) \geq u\}$. Generally we will suppose that $H(x)$ is strictly increasing on its support and this will eliminate ambiguities on the selection of the parameter. Now define $\theta_{1} = T_{1}(H) = H^{−1}(1/2)$. 
+This is the median functional. 
+
+Note that if $G(x) \leq F (x)$ for all $x$, then 
+$G^{-1}(u) \geq F^{-1}(u)$ for all $u$; and, in particular, $G^{-1}(1/2) \geq F^{-1}(1/2)$. Hence, $T_{1}(H)$ satisfies the first condition for a location functional. 
+
+Next let $H^{*}(x) = P(aX + b \leq x) = H[a^{-1}(x − b)]$. Then it follows at once that $H^{*-1}(u) = aH^{-1}(u) + b$ and the second condition is satisfied. 
+
+The third condition follows with an argument similar to the the one for the second condition. 
+:::
+
+
+::: {#exm-mean-location-functional .example}
+# Mean Location Functional  
+
+For the mean functional let $\theta_{2} = T_{2}(H) = \int x\,dH(x)$, when the mean exists. 
+
+Note that $\int x\,dH(x) = \int H^{-1}(u)\,du$. Now if $G(x) \leq F(x)$ for all $x$, then $x \leq G^{-1}(F(x))$. Let $x = F^{-1}(u)$ and we have $F^{-1}(u) \leq G^{-1}(F(F^{-1}(u))) \leq G^{-1}(u)$. Hence, $T_2(G) = \int G^{-1}(u)\,du \geq \int F^{-1}(u)\,du = T_{2}(F)$ and the first condition is satisfied. 
+
+The other two conditions follow easily from the definition of the integral.
+
+:::
+
+
+::: {#exm-pseudo-median-location-functional .example}
+# Pseudo-Median Location Functional  
+
+Assume that $X_{1}$ and $X_{2}$ are independent and identically distributed (iid), with distribution function $H(x)$. Let $Y = (X_{1} + X_{2})/2$. Then $Y$ has distribution function $H^{*}(y) = P(Y \leq y) = \int H(2y - x)h(x)\,dx$. Let $\theta_{3} = T_{3}(H) = H^{*-1}(1/2)$. 
+
+To show that $T_3$ is a location functional, suppose $G(x) \leq F(x)$ for all $x$. Then
+
+$$
+\begin{aligned}
+G^{*}(y) &= \int G(2y-x)g(x)dx  \\
+&=    \int\left[ \int_{-\infty}^{2y-x} g(t)dt \right] g(x) dx \\
+&\leq \int\left[ \int_{-\infty}^{2y-x} f(t)dt \right] g(x) dx \\
+&=    \int\left[ \int_{-\infty}^{2y-t} g(x)dx \right] f(t) dt \\
+&\leq \int\left[ \int_{-\infty}^{2y-t} f(x)dx \right] f(t) dt \\
+&=    F^{*}(y)
+\end{aligned}
+$$
+
+
+hence, as in @exm-median-location-functional, it follows that $G^{*-1}(u) \geq F^{*-1}(u)$ and, hence, that $T_{3}(G) \geq T_{3}(F)$.  
+
+For the second property, let $W = aX + b$ where $X$ has distribution function $H$ and $a > 0$. Then $W$ has distribution function 
+$F_{W}(t) = H( (t - b)/a )$. Then by the change of variable $z = (x - b)/a$, we have
+
+$$
+F_{W}^{*}(y) 
+= \int H\left( \dfrac{2y-x-b}{a}  \right)\dfrac{1}{a}h\left(\dfrac{x-b}{a}\right)
+= \int H\left( 2\dfrac{y-b}{a} - z  \right)h(z)dz.
+$$
+
+Thus the defining equation for $T_{3}(F_{W})$ is
+
+$$
+\dfrac{1}{2} = \int H\left( 2\dfrac{T_{3}(F_{w})-b}{a} - z \right)h(z)dz
+$$
+
+which is satisfied for $T_{3}(F_{W}) = aT_{3}(H) + b$.  
+
+For the third property, let $V = -X$ where $X$ has distribution function $H$. Then $V$ has distribution function $F_{V}(t) = 1 - H(-t)$. Hence, by the change in variable $z = -x$,
+
+$$
+F_{V}^{*}(y) = \int (1-H(-2y+x)) h(-x) dx = 1 - \int H(-2y-z) h(z) dz.
+$$
+
+Because the defining equation of $T_{3}(F_{V})$ can be written as
+
+$$
+\dfrac{1}{2} = \int H\left[ 2(-T_{3}(F_{V}))  - z \right] h(z)dz
+$$
+
+it follows that $T_{3}(F_{V}) = -T_{3}(H)$. Therefore, $T_{3}$ is a location functional. It has been called the **pseudo-median** by @Hoyland1965 and is more appropriate for symmetric distributions.
+
+:::
+
+
+
+The next theorem characterizes all the location functionals for a symmetric distribution.
+
+:::{#thm-symmetric-location .theorem}
+
+Suppose that the pdf $h(x)$ is symmetric about some point $a$. If $T(H)$ is a location functional, then $T(H) = a$.
+
+:::
+
+
+::: {.proof}
+
+Let the random variable $X$ have pdf $h(x)$ symmetric about $a$. 
+Let $Y = X - a$, then $Y$ has pdf $g(y) = h(y + a)$ symmetric about $0$. 
+Hence $Y$ and $-Y$ have the same distribution. 
+By the third property of location functionals, this means that 
+$T(G_{Y}) = T(G_{-Y}) = -T(G_{Y})$; i.e., $T(G_{Y}) = 0$. 
+But by the second property, $0 = T(G_{Y}) = T(H) - a$; that is, $a = T(H)$.
+
+:::
+
+
+This theorem means that when we sample from a symmetric distribution we can unambiguously define location as the center of symmetry. Then all location functionals that we may wish to study will specify the same location parameter.
+
+
+
+
+## Geometry and Inference in the Location Model
+
+
+Letting $X = (X_{1}, \ldots, X_{n})^{\prime}$ and $e = (e_{1}, \ldots, e_{n})^{\prime}$, we then write the statistical location model, @eq-location-model1, as,
+
+
+$$
+\bX = \bfone\theta + \be
+$$
+
+where $\bfone$ denotes the vector all of whose components are 1 and $T(F_{e}) = 0$. If $\Omega_{F}$ denotes the one-dimensional subspace spanned by $\bfone$, then we can express the model more compactly as $X = \eta + e$, where $\eta \in \Omega_{F}$. The subscript $F$ on $\Omega$ stands for full model in the context of hypothesis testing as discussed below.
+
+Let $\bx$ be a realization of $\bX$. Note that except for random error, $\bx$ would lie in $\Omega_{F}$. Hence an intuitive fitting criteria is to estimate $\theta$ by a value $\hat{\theta}$ such that the vector $\bfone\hat{\theta} \in \Omega_{F}$ lies "closest" to $\bx$, where "closest" is defined in terms of a norm. Furthermore, a norm, as the following general discussion shows, provides a complete inference for the parameter $\theta$.
+
+Recall that a norm is a nonnegative function, $\|\cdot\|$, defined on $\mathcal{R}^{n}$ such that $\|\by\| \geq 0$ for all $\by$; $\|\by\| = 0$ if and only if $\by = 0$; $\|a\by\| = |a|\|\by\|$ for all real $a$; and $\|\by + \bz\| \leq \|\by\| + \|\bz\|$. The distance between two vectors is $d(\bz, \by) = \|\bz - \by\|$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

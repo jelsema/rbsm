@@ -1,0 +1,31 @@
+
+
+<!-----
+
+% mathbf: 
+%  Produces bold, upright (roman) characters.
+%  Only works reliably on Latin letters (A-Z, a-z) and a few uppercase Greek letters
+% 
+% boldsymbol
+%  Preserves the original italic or slant shape of the math symbol while making it bold.
+%  Works on Latin letters, Greek letters (both upper and lower case), 
+%    and most mathematical symbols (like \alpha, \nabla, \times).
+
+
+----->
+
+
+\newcommand{\be}{\mathbf{e}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+\newcommand{\bz}{\mathbf{z}}
+
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bZ}{\mathbf{Z}}
+
+\newcommand{\bfone}{\mathbf{1}}
+
+
+
+

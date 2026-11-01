@@ -1,0 +1,58 @@
+---
+format: html
+---
+
+{{< include macros.qmd >}}
+
+
+# Preface {.unnumbered}
+
+
+
+
+
+
+General Introduction.
+
+I don't need this. Just using this page to demo some content.
+
+
+
+
+
+
+::: {#def-def1 .definition}
+# A handy definition
+
+This is a definition.
+
+:::
+
+
+::: {#thm-thm1 .theorem}
+# A novel theorem
+
+This is a theorem.
+
+:::
+
+
+::: {#lem-lem1 .lemma}
+# A cute Lemma
+
+This is a lemma.
+
+:::
+
+
+::: {#exm-exm1 .example}
+# A nice example
+
+This is an example
+
+:::
+
+
+
+
+

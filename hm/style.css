@@ -1,0 +1,110 @@
+/* =========================================
+   Definition — Blue
+   ========================================= */
+
+div.definition {
+  background-color: #EEF5FF !important;
+  border-left: 5px solid #3973AC !important;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+div.definition .theorem-title {
+  font-weight: bold;
+  color: #24527A !important;
+  margin-bottom: 0.5em;
+}
+
+
+/* =========================================
+   Theorem — Turquoise
+   ========================================= */
+
+div.theorem:not(.definition):not(.lemma):not(.example) {
+  background-color: #DDF3F0 !important;
+  border-left: 5px solid #16877D !important;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+div.theorem:not(.definition):not(.lemma):not(.example) .theorem-title {
+  font-weight: bold;
+  color: #11665F !important;
+  margin-bottom: 0.5em;
+}
+
+
+/* =========================================
+   Lemma — Light Turquoise
+   ========================================= */
+
+div.lemma {
+  background-color: #EFF9F7 !important;
+  border-left: 5px solid #70BDB4 !important;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+div.lemma .theorem-title {
+  font-weight: bold;
+  color: #267D74 !important;
+  margin-bottom: 0.5em;
+}
+
+
+/* =========================================
+   Example — Grey
+   ========================================= */
+
+div.example {
+  background-color: #F1F2F4 !important;
+  border-left: 5px solid #858B94 !important;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+div.example .theorem-title {
+  font-weight: bold;
+  color: #505761 !important;
+  margin-bottom: 0.5em;
+}
+
+
+
+
+/* Removes the default parentheses around the custom theorem name 
+.theorem-title + span {
+  display: none !important;
+}*/
+
+/* Put theorem-like titles on their own line */
+.theorem-title {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+
+/* =========================================
+   Proof — Grey
+   ========================================= */
+
+div.proof {
+  background-color: #F7F7F8 !important;
+  border-left: 5px solid #858B94 !important;
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+div.proof .proof-title {
+  font-weight: bold;
+  color: #505761 !important;
+  margin-bottom: 0.5em;
+}
+
+
+

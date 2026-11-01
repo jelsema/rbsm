@@ -1,0 +1,65 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Hettmansperger & McKean"
+  subtitle: "Study Notes"
+  author: "Not Me"
+  date: "2026-10-19"
+  chapters:
+    - index.qmd
+    - part: "Part 1: One-Sample"
+      chapters:
+        - hm-ch01-one-sample.qmd
+    - part: "Notes 1: One-Sample"
+      chapters: 
+        - notes-ch01-one-sample.qmd
+    - references.qmd
+
+# crossref:
+#   theorem:
+#     title: Theorem
+#     prefix: Theorem
+#   lemma:
+#     title: Lemma
+#     prefix: Lemma
+#   definition:
+#     title: Definition
+#     prefix: Definition
+#   example:
+#     title: Example
+#     prefix: Example
+
+format:
+  html:
+    theme: 
+      light: cosmo
+      dark: darkly
+    css: style.css
+    # toc: true
+    # toc-depth: 2 # Includes levels #, ##
+    # toc-expand: 2
+    # toc-location: left
+  # pdf:
+  #   documentclass: scrreprt
+
+# filters:
+#   - at: post-quarto
+#     path: title-modification.lua
+
+crossref:
+  title-delim: ": "
+
+bibliography: references.bib
+
+knitr:
+  opts_chunk: 
+    echo: false
+    warning: false
+    message: false
+
+editor: source
+
+
+
